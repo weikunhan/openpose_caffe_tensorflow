@@ -18,12 +18,14 @@ Recommended use Anaconda to create the individual environment for this project
 and use following code to install dependencies:
 ```
 conda install -c conda-forge keras
+conda install -c conda-forge tensorflow 
 ```
 The following packages are required (the version numbers that have been tested 
 are given for reference):
  
 * Ptyhon 3.6
 * Keris 2.1.5
+* Tensorflow 1.5.0
 * Numpy 1.14.2
 * SciPy 1.0.1
 * H5py 2.7.1
