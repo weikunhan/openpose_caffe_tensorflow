@@ -16,9 +16,9 @@ For more problem details, please go to
 ## Requirements and Dependencies
 Recommeda use conda to create individe enverioment for this project and use 
 following code to install dependencies: 
-'''
+```
 conda install -c conda-forge keras
-'''
+```
 The following packages are required (the version numbers that have been tested 
 are given for reference):
  
