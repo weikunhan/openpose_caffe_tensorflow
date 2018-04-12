@@ -14,8 +14,8 @@ For more problem details, please go to
 [my personal website](https://weikunhan.github.io).
 
 ## Requirements and Dependencies
-Recommeda use conda to create individe enverioment for this project and use 
-following code to install dependencies: 
+Recommended use Anaconda to create the individual environment for this project 
+and use following code to install dependencies:
 ```
 conda install -c conda-forge keras
 ```
