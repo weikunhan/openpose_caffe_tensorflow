@@ -17,8 +17,9 @@ For more problem details, please go to
 Recommended use Anaconda to create the individual environment for this project 
 and use following code to install dependencies:
 ```
-conda install -c conda-forge keras
 conda install -c conda-forge tensorflow 
+conda install -c conda-forge keras
+conda install -c conda-forge opencv 
 ```
 The following packages are required (the version numbers that have been tested 
 are given for reference):
@@ -29,6 +30,7 @@ are given for reference):
 * Numpy 1.14.2
 * SciPy 1.0.1
 * H5py 2.7.1
+* OpenCV 3.4.1
 
 
 
