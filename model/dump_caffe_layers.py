@@ -36,6 +36,8 @@ for name, blob in net.blobs.items():
     
     print('{:<5}:  {}'.format(name, blob.data.shape))
 
+print('------------------------Beginning dumping------------------------------')
+    
 # Write out weight matrices and bias vectors
 for name, param in net.params.items():
     np.save(os.path.join(LAYERS_OUTPUT, "w_{:s}.npy".format(name)), param[0].data)
