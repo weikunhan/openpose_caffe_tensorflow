@@ -40,9 +40,13 @@ print('------------------------Beginning dumping------------------------------')
     
 # Write out weight matrices and bias vectors
 for name, param in net.params.items():
-    np.save(os.path.join(LAYERS_OUTPUT, "w_{:s}.npy".format(name)), param[0].data)
-    np.save(os.path.join(LAYERS_OUTPUT, "b_{:s}.npy".format(name)), param[1].data)
+    np.save(os.path.join(LAYERS_OUTPUT, 'w_{:s}.npy'.format(name)), 
+            param[0].data)
+    np.save(os.path.join(LAYERS_OUTPUT, 'b_{:s}.npy'.format(name)), 
+            param[1].data)
     
-    print('{:<5}:  weight-{} bias-{}'.format(name, param[0].data.shape, param[1].data.shape))
+    print('{:<5}:  weight-{} bias-{}'.format(name, 
+                                             param[0].data.shape, 
+                                             param[1].data.shape))
 
 print('-------------------------Finished dumping------------------------------')
