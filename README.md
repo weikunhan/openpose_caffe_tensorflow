@@ -8,7 +8,7 @@ Compression and Acceleration project, we pruning deep learning model to remove
 redundant connections in DNN. The contribution of this partial project are:
 
 * established convertors between Caffe and Keras model convertingl;
-* create a fune-tuning python script for Kers model fune-tune.
+* create a fune-tuning python script for Keras model fune-tune.
 
 For more problem details, please go to
 [my personal website](https://weikunhan.github.io).
