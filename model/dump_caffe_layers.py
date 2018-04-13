@@ -1,29 +1,42 @@
-#
-# Run this file from docker:
-#
-# docker run -v [absolute path to your keras_Realtime_Multi-Person_Pose_Estimation folder]:/workspace -it bvlc/caffe:cpu python dump_caffe_layers.py
-#
+# -*- coding: utf-8 -*-
+""" Dump Caffe layers
 
-from __future__ import division, print_function
+This module dumped information from Caffe model. 
+
+################################################################################
+# Author: Weikun Han <weikunhan@gmail.com>
+# Crate Date: 04/13/2018
+# Update:
+# Reference: 
+################################################################################
+"""
+
 import caffe
 import numpy as np
 import os
 
-layers_output = 'model/caffe/layers'
-caffe_model = 'model/caffe/pose_iter_440000.caffemodel'
-caffe_proto = 'model/caffe/pose_deploy.prototxt'
+# Please modify input path to locate you file
+CAFFE_DIR = 'model/caffe/'
+LAYERS_OUTPUT = 'model/caffe/layers'
 
+# Input Caffe model
+caffe_model = os.path.join(CAFFE_DIR, 'pose_iter_440000.caffemodel')
+caffe_proto = os.path.join(CAFFE_DIR, 'pose_deploy.prototxt')
+
+# Initial Caffe network
 caffe.set_mode_cpu()
 net = caffe.Net(caffe_proto, caffe_model, caffe.TEST)
 
-# layer names and output shapes
-for layer_name, blob in net.blobs.items():
-    print(layer_name, blob.data.shape)
+# Check for each layer name and each input data shapes 
+for name, blob in net.blobs.items():
+    
+    print('{:<5}:  {}'.format(name, blob.data.shape))
 
-# write out weight matrices and bias vectors
-for k, v in net.params.items():
-    print(k, v[0].data.shape, v[1].data.shape)
-    np.save(os.path.join(layers_output, "W_{:s}.npy".format(k)), v[0].data)
-    np.save(os.path.join(layers_output, "b_{:s}.npy".format(k)), v[1].data)
+# Write out weight matrices and bias vectors
+for name, param in net.params.items():
+    np.save(os.path.join(LAYERS_OUTPUT, "W_{:s}.npy".format(name)), param[0].data)
+    np.save(os.path.join(LAYERS_OUTPUT, "b_{:s}.npy".format(name)), param[1].data)
+    
+    print('{:<5}:  weight-{} bias-{}'.format(name, param[0].data.shape, param[1].data.shape))
 
-print("Done !")
+print('-------------------------Finished dumping------------------------------')
