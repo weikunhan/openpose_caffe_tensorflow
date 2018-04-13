@@ -11,26 +11,41 @@ This module dumped information from Keras model.
 ################################################################################
 """
 
-import caffe
 import numpy as np
 import os
 from keras.models import load_model
 
-layers_output = 'model/keras/layers'
-keras_model = 'model/keras/pose_iter_440000.h5'
+# Please modify input path to locate you file
+KERAS_DIR = 'model/keras/'
+LAYERS_OUTPUT = 'model/keras/layers'
 
+# Check location to save datasets
+if not os.path.exists(LAYERS_OUTPUT):
+    os.makedirs(LAYERS_OUTPUT)
 
+# Input Keras model
+keras_model = os.path.join(KERAS_DIR, pose_iter_440000.h5)
+
+# Load Keras model
 model = load_model(keras_model)
 
-# Loop over all layers 
+# Check for each layer name and each input data shapes 
 for layer in model.layers:
       
-    # Extract each layer name
-    layer_name = layer.name
+    print('{:<5}:  {}'.format(layer.name, layer.input_shape))
 
-    # write out weight matrices and bias vectors
-    print(layer_name, layer.get_weights()[0].shape, layer.get_weights()[1].shape)
-    np.save(os.path.join(layers_output, "W_{:s}.npy".format(k)), layer.get_weights()[0])
-    np.save(os.path.join(layers_output, "b_{:s}.npy".format(k)), layer.get_weights()[2])
+print('------------------------Beginning dumping------------------------------')
 
-print("Done !")
+# Write out weight matrices and bias vectors
+for layer in model.layers:
+
+    np.save(os.path.join(LAYERS_OUTPUT, "w_{:s}.npy".format(layer.name)), 
+            layer.get_weights()[0])
+    np.save(os.path.join(LAYERS_OUTPUT, "b_{:s}.npy".format(layer.name)), 
+            layer.get_weights()[1])
+      
+    print('{:<5}:  weight-{} bias-{}'.format(layer.name, 
+                                             layer.get_weights()[0], 
+                                             layer.get_weights()[1])
+
+print('-------------------------Finished dumping------------------------------')
