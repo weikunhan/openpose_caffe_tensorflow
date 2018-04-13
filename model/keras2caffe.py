@@ -45,8 +45,8 @@ for layer_name, variable in net.params.items():
         #w = np.transpose(w, (2, 3, 1, 0))
         
         # Store into Keras model
-        net.params[layer_name][0] = w
-        net.params[layer_name][1] = b
+        net.params[layer_name][0].data[...] = w
+        net.params[layer_name][1].data[...] = b
 
 # Output Caffe model
 net.save(CAFFE_OUTPUT_DIR)
