@@ -19,6 +19,10 @@ import os
 CAFFE_DIR = 'model/caffe/'
 LAYERS_OUTPUT = 'model/caffe/layers'
 
+# Check location to save datasets
+if not os.path.exists(LAYERS_OUTPUT):
+    os.makedirs(LAYERS_OUTPUT)
+
 # Input Caffe model
 caffe_model = os.path.join(CAFFE_DIR, 'pose_iter_440000.caffemodel')
 caffe_proto = os.path.join(CAFFE_DIR, 'pose_deploy.prototxt')
