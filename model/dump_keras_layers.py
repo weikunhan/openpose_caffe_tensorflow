@@ -20,8 +20,8 @@ LAYERS_OUTPUT = 'keras/layers'
 # Check location to save datasets
 if not os.path.exists(LAYERS_OUTPUT):
     os.makedirs(LAYERS_OUTPUT)
-
-# Input Keras model
+    
+# Setup input and output name
 keras_model_filename = 'pose_iter_440000.h5'
 
 # Load Keras model
