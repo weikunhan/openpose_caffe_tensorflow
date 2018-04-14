@@ -27,6 +27,7 @@ caffe_model_filename = 'pose_iter_440000_convert.caffemodel'
 
 # Setup the Caffe model
 caffe_proto = os.path.join(CAFFE_DIR, caffe_proto_filename)
+caffe.set_mode_cpu()
 net = caffe.Net(caffe_proto, caffe.TEST)
 
 # Loop over all layers 
