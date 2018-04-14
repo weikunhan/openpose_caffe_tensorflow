@@ -36,7 +36,6 @@ print('------------------------Beginning dumping------------------------------')
 
 # Write out weight matrices and bias vectors
 for layer in model.layers:
-
     if len(layer.get_weights()) is 2:
         np.save(os.path.join(LAYERS_OUTPUT, "w_{:s}.npy".format(layer.name)), 
                 layer.get_weights()[0])
