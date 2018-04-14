@@ -25,10 +25,6 @@ if not os.path.exists(LAYERS_OUTPUT):
 caffe_proto_filename = 'pose_deploy.prototxt'
 caffe_model_filename = 'pose_iter_440000.caffemodel'
 
-# Input Caffe model
-caffe_model = os.path.join(CAFFE_DIR, caffe_model_filename)
-caffe_proto = os.path.join(CAFFE_DIR, caffe_proto_filename)
-
 # Initial Caffe network
 caffe_model = os.path.join(CAFFE_DIR, caffe_model_filename)
 caffe_proto = os.path.join(CAFFE_DIR, caffe_proto_filename)
