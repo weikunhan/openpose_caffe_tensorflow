@@ -20,24 +20,24 @@ from model import get_testing_model
 
 # Please modify input path to locate you file
 CAFFE_LAYERS_DIR = 'caffe/layers'
-KERAS_OUTPUT_DIR = 'keras/pose.h5'
+KERAS_DIR = 'keras'
+
+# Setup input and output name
+keras_model_filename = 'pose_iter_440000.h5'
 
 # Get the skeleton of the Keras model
 model = get_testing_model()
 
 # Loop over all layers 
 for layer in model.layers:
-
-    # Extract each layer name
-    layer_name = layer.name
     
     # Set all weights and biases from Caffe model into Keras model 
-    if (os.path.exists(os.path.join(CAFFE_LAYERS_DIR, 
-                                    'w_{:s}.npy'.format(layer_name))):
+    if os.path.exists(os.path.join(CAFFE_LAYERS_DIR, 
+                                   'w_{:s}.npy'.format(layer.name))):
         w = np.load(os.path.join(CAFFE_LAYERS_DIR, 
-                                 'w_{:s}.npy'.format(layer_name)))
+                                 'w_{:s}.npy'.format(layer.name)))
         b = np.load(os.path.join(CAFFE_LAYERS_DIR, 
-                                 'b_{:s}.npy'.format(layer_name)))
+                                 'b_{:s}.npy'.format(layer.name)))
         
         # Tranfer the right form to store
         w = np.transpose(w, (2, 3, 1, 0))
@@ -47,6 +47,7 @@ for layer in model.layers:
         layer.set_weights(layer_weights)
 
 # Output Keras model
-model.save_weights(KERAS_OUTPUT_DIR)
+keras_model = os.path.join(KERAS_DIR, keras_model_filename)
+model.save(keras_model)
 
 print('-------------------------Finished converting---------------------------')
