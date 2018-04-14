@@ -22,9 +22,10 @@ if not os.path.exists(LAYERS_OUTPUT):
     os.makedirs(LAYERS_OUTPUT)
 
 # Input Keras model
-keras_model = os.path.join(KERAS_DIR, 'pose_iter_440000.h5')
+keras_model_filename = 'pose_iter_440000.h5'
 
 # Load Keras model
+keras_model = os.path.join(KERAS_DIR, keras_model_filename)
 model = load_model(keras_model)
 
 # Check for each layer name and each input data shapes 
@@ -36,6 +37,7 @@ print('------------------------Beginning dumping------------------------------')
 
 # Write out weight matrices and bias vectors
 for layer in model.layers:
+
     if len(layer.get_weights()) is 2:
         np.save(os.path.join(LAYERS_OUTPUT, "w_{:s}.npy".format(layer.name)), 
                 layer.get_weights()[0])
