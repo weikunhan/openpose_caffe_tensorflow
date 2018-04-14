@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """ Dump Caffe layers
-
 This module dumped information from Caffe model. 
-
 ################################################################################
 # Author: Weikun Han <weikunhan@gmail.com>
 # Crate Date: 04/13/2018
@@ -16,18 +14,24 @@ import numpy as np
 import os
 
 # Please modify input path to locate you file
-CAFFE_DIR = 'model/caffe/'
-LAYERS_OUTPUT = 'model/caffe/layers'
+CAFFE_DIR = 'caffe/'
+LAYERS_OUTPUT = 'caffe/layers'
 
 # Check location to save datasets
 if not os.path.exists(LAYERS_OUTPUT):
     os.makedirs(LAYERS_OUTPUT)
+    
+# Setup input and output name
+caffe_proto_filename = 'pose_deploy.prototxt'
+caffe_model_filename = 'pose_iter_440000.caffemodel'
 
 # Input Caffe model
-caffe_model = os.path.join(CAFFE_DIR, 'pose_iter_440000.caffemodel')
-caffe_proto = os.path.join(CAFFE_DIR, 'pose_deploy.prototxt')
+caffe_model = os.path.join(CAFFE_DIR, caffe_model_filename)
+caffe_proto = os.path.join(CAFFE_DIR, caffe_proto_filename)
 
 # Initial Caffe network
+caffe_model = os.path.join(CAFFE_DIR, caffe_model_filename)
+caffe_proto = os.path.join(CAFFE_DIR, caffe_proto_filename)
 caffe.set_mode_cpu()
 net = caffe.Net(caffe_proto, caffe_model, caffe.TEST)
 
