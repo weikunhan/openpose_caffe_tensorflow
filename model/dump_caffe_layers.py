@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """ Dump Caffe layers
+
 This module dumped information from Caffe model. 
+
 ################################################################################
 # Author: Weikun Han <weikunhan@gmail.com>
 # Crate Date: 04/13/2018
