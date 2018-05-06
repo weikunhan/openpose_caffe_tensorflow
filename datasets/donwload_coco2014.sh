@@ -24,13 +24,13 @@ echo "Unzipping annotations datasets 2014..."
 unzip person_keypoints_trainval2014.zip 
 
 echo "Unzipping test datasets 2014..."
-#unzip test2014.zip -d test_coco2014
+#unzip test2014.zip
 
 echo "Unzipping validation datasets 2014..."
-#unzip val2014.zip -d validation_coco2014
+#unzip val2014.zip
 
 echo "Unzipping train datasets 2014..."
-#unzip train2014.zip -d train_coco2014
+#unzip train2014.zip
 
 mv -v annotations/* annotations_coco2014/
 #mv -v train2014/* train_coco2014/
